@@ -1,3 +1,3 @@
 # Teacheristas
 
-OOP Project for Software Engineering cousre @ CEID
+OOP Project for Software Engineering course @ CEID
