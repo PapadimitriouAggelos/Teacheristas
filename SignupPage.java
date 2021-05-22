@@ -1,16 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package teacheristas;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class SignupPage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HomePage
-     */
+    Connection con;
+        PreparedStatement pst;
+        ResultSet rs;
     public SignupPage() {
         initComponents();
     }
@@ -26,20 +31,26 @@ public class SignupPage extends javax.swing.JFrame {
 
         LoginButton = new javax.swing.JLabel();
         Back = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        tname = new javax.swing.JTextField();
+        tpass = new javax.swing.JPasswordField();
+        tuser = new javax.swing.JTextField();
+        tsur = new javax.swing.JTextField();
+        tadd = new javax.swing.JTextField();
+        tcity = new javax.swing.JTextField();
+        tcountry = new javax.swing.JTextField();
+        tpc = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 580, 280, 70));
+
+        LoginButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginButtonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 640, 280, 70));
 
         Back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -48,37 +59,37 @@ public class SignupPage extends javax.swing.JFrame {
         });
         getContentPane().add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 30, 70, 30));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField2.setBorder(null);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 360, 20));
+        tname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tname.setBorder(null);
+        getContentPane().add(tname, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 360, 30));
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPasswordField1.setBorder(null);
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 340, -1));
+        tpass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tpass.setBorder(null);
+        getContentPane().add(tpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 340, 30));
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField3.setBorder(null);
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 360, 20));
+        tuser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tuser.setBorder(null);
+        getContentPane().add(tuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 360, 30));
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField4.setBorder(null);
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 360, 20));
+        tsur.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tsur.setBorder(null);
+        getContentPane().add(tsur, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 360, 30));
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField5.setBorder(null);
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, 360, 20));
+        tadd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tadd.setBorder(null);
+        getContentPane().add(tadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 360, 360, 30));
 
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField6.setBorder(null);
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 360, 20));
+        tcity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tcity.setBorder(null);
+        getContentPane().add(tcity, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 360, 30));
 
-        jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField7.setBorder(null);
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 360, 20));
+        tcountry.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tcountry.setBorder(null);
+        getContentPane().add(tcountry, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 360, 30));
 
-        jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField8.setBorder(null);
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 360, -1));
+        tpc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tpc.setBorder(null);
+        getContentPane().add(tpc, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 360, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/teacheristas/SignupPage.jpg"))); // NOI18N
         jLabel1.setText(" ");
@@ -93,6 +104,62 @@ public class SignupPage extends javax.swing.JFrame {
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackMouseClicked
+
+    private void LoginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginButtonMouseClicked
+        String username = tuser.getText();
+        String password = tpass.getText();
+        String name = tname.getText();
+        String surname = tsur.getText();
+        String address = tadd.getText();
+        String city = tcity.getText();
+        String country = tcountry.getText();
+        String postalcode = tpc.getText();
+        
+        if (username.equals("") || password.equals("")|| name.equals("") || surname.equals("")||address.equals("")){
+            JOptionPane.showMessageDialog(this,"Some fields are blanked, Try again!","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+        
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost/teacheristas","root","");
+        
+        pst = con.prepareStatement("insert into users (username,password,name,surname,address,city,country,postalcode) values (?,?,?,?,?,?,?,?)");
+        pst.setString(1, username);
+        pst.setString(2, password);
+        pst.setString(3, name);
+        pst.setString(4, surname);
+        pst.setString(5, address);
+        pst.setString(6, city);
+        pst.setString(7, country);
+        pst.setString(8, postalcode);
+        
+        pst.executeUpdate();
+        
+        
+        
+        
+       
+            JOptionPane.showMessageDialog(this,"Account Created successfully!");
+             
+            
+             
+             
+           
+       
+             
+             
+        
+        
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(SignupPage.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(SignupPage.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+        } 
+    }//GEN-LAST:event_LoginButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -140,13 +207,13 @@ public class SignupPage extends javax.swing.JFrame {
     private javax.swing.JLabel Back;
     private javax.swing.JLabel LoginButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField tadd;
+    private javax.swing.JTextField tcity;
+    private javax.swing.JTextField tcountry;
+    private javax.swing.JTextField tname;
+    private javax.swing.JPasswordField tpass;
+    private javax.swing.JTextField tpc;
+    private javax.swing.JTextField tsur;
+    private javax.swing.JTextField tuser;
     // End of variables declaration//GEN-END:variables
 }
