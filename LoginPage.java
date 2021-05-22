@@ -1,16 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package teacheristas;
 
+package teacheristas;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class LoginPage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HomePage
-     */
+   Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
     public LoginPage() {
         initComponents();
     }
@@ -26,13 +29,19 @@ public class LoginPage extends javax.swing.JFrame {
 
         LoginButton = new javax.swing.JLabel();
         Back = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        user = new javax.swing.JTextField();
+        pass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        LoginButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginButtonMouseClicked(evt);
+            }
+        });
         getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 580, 280, 70));
 
         Back.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -42,23 +51,13 @@ public class LoginPage extends javax.swing.JFrame {
         });
         getContentPane().add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 30, 70, 30));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 390, 40));
+        user.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        user.setBorder(null);
+        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 390, 40));
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPasswordField1.setBorder(null);
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, 390, 40));
+        pass.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pass.setBorder(null);
+        getContentPane().add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, 390, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/teacheristas/LoginPage.jpg"))); // NOI18N
         jLabel1.setText(" ");
@@ -74,13 +73,37 @@ public class LoginPage extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BackMouseClicked
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    private void LoginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginButtonMouseClicked
+       String username = user.getText();
+        String password = pass.getText();
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con =DriverManager.getConnection("jdbc:mysql://localhost/teacheristas","root","");
+            
+            pst=con.prepareStatement("select * from users where username=? and password=?");
+            pst.setString(1, username);
+            pst.setString(2, password);
+            rs=pst.executeQuery();
+            
+           while(rs.next())
+            {
+   
+            JOptionPane.showMessageDialog(this,"You have logged in successfully!");
+            
+             HomePage a = new HomePage();
+            a.setVisible(true);
+            this.dispose();
+            }
+            
+            
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_LoginButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -122,7 +145,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel Back;
     private javax.swing.JLabel LoginButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField pass;
+    private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }
