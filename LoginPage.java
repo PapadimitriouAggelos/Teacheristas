@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 public class LoginPage extends javax.swing.JFrame {
 
    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
+    PreparedStatement pst,pst1;
+    ResultSet rs,rs1;
     public LoginPage() {
         initComponents();
     }
@@ -86,14 +86,30 @@ public class LoginPage extends javax.swing.JFrame {
             pst.setString(2, password);
             rs=pst.executeQuery();
             
-           while(rs.next())
+           if(rs.next())
             {
-   
-            JOptionPane.showMessageDialog(this,"You have logged in successfully!");
             
-             HomePage a = new HomePage();
-            a.setVisible(true);
-            this.dispose();
+                JOptionPane.showMessageDialog(this,"You have logged in successfully!");
+                String user = rs.getString("username");
+            
+            pst1=con.prepareStatement("select * from admin where username=?");
+            pst1.setString(1, user);
+            
+            rs1=pst1.executeQuery();
+            
+            if(rs1.next())
+            {
+                AdminPage a = new AdminPage();
+                a.setVisible(true);
+                this.dispose();   
+            }
+            
+            
+            
+            
+           
+            
+             
             }
             
             
