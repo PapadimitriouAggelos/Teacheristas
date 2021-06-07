@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 public class LoginPage extends javax.swing.JFrame {
 
    Connection con;
-    PreparedStatement pst,pst1,pst2;
-    ResultSet rs,rs1,rs2;
+    PreparedStatement pst,pst1,pst2,pst3;
+    ResultSet rs,rs1,rs2,rs3;
     public LoginPage() {
         initComponents();
     }
@@ -126,6 +126,17 @@ public class LoginPage extends javax.swing.JFrame {
                 this.dispose();   
             }
             
+             pst3=con.prepareStatement("select * from teacher where username=?");
+            pst3.setString(1, user);
+            
+            rs3=pst3.executeQuery();
+            
+            if(rs3.next())
+            {
+                TeacherPage a = new TeacherPage();
+                a.setVisible(true);
+                this.dispose();   
+            }
             
            
             
