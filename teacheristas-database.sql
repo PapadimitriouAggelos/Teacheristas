@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2021 at 07:59 PM
+-- Generation Time: Jun 07, 2021 at 10:38 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -42,6 +42,24 @@ INSERT INTO `admin` (`username`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`username`, `email`) VALUES
+('alexpat', 'alexpat@gmail.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -61,6 +79,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `name`, `surname`, `address`, `city`, `country`, `postalcode`) VALUES
+('alexpat', '123456', 'Alex', 'Patelis', 'Zaimi 89', 'Patras', 'Greece', '26228'),
 ('apapadimitriou', '1996', 'Aggelos', 'Papadimitriou', 'Ermou 12', 'Patras', 'Greece', '26441');
 
 --
@@ -71,6 +90,12 @@ INSERT INTO `users` (`username`, `password`, `name`, `surname`, `address`, `city
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
   ADD PRIMARY KEY (`username`);
 
 --
@@ -88,6 +113,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
