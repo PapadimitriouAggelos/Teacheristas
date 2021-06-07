@@ -24,94 +24,94 @@ public class AdminPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
+        edituser = new javax.swing.JLabel();
+        editcourse = new javax.swing.JLabel();
+        regfin = new javax.swing.JLabel();
+        usersdash = new javax.swing.JLabel();
+        adminp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                logoutMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 30, 70, 30));
+        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 30, 70, 30));
 
-        jLabel6.setText(" ");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        edituser.setText(" ");
+        edituser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                edituserMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 180, 170));
+        getContentPane().add(edituser, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 180, 170));
 
-        jLabel7.setText(" ");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        editcourse.setText(" ");
+        editcourse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                editcourseMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, 180, 170));
+        getContentPane().add(editcourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, 180, 170));
 
-        jLabel8.setText(" ");
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+        regfin.setText(" ");
+        regfin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
+                regfinMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, 180, 170));
+        getContentPane().add(regfin, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, 180, 170));
 
-        jLabel9.setText(" ");
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        usersdash.setText(" ");
+        usersdash.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                usersdashMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 180, 170));
+        getContentPane().add(usersdash, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 180, 170));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/teacheristas/AdminPage.jpg"))); // NOI18N
-        jLabel1.setText(" ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, -1));
+        adminp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/teacheristas/AdminPage.jpg"))); // NOI18N
+        adminp.setText(" ");
+        getContentPane().add(adminp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+    private void usersdashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usersdashMouseClicked
          AdminPageUserDash a = new AdminPageUserDash();
        a.setVisible(true);
        this.dispose();
-    }//GEN-LAST:event_jLabel9MouseClicked
+    }//GEN-LAST:event_usersdashMouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         HomePage a = new HomePage();
        a.setVisible(true);
        this.dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_logoutMouseClicked
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    private void edituserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edituserMouseClicked
          AdminPageEditUser a = new AdminPageEditUser();
        a.setVisible(true);
        this.dispose();
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_edituserMouseClicked
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void editcourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editcourseMouseClicked
        
        AdminPageEditCourse a = new  AdminPageEditCourse();
        a.setVisible(true);
        this.dispose();
-    }//GEN-LAST:event_jLabel7MouseClicked
+    }//GEN-LAST:event_editcourseMouseClicked
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+    private void regfinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regfinMouseClicked
         AdminPageReg_Fin a = new  AdminPageReg_Fin();
        a.setVisible(true);
        this.dispose();
-    }//GEN-LAST:event_jLabel8MouseClicked
+    }//GEN-LAST:event_regfinMouseClicked
 
     /**
      * @param args the command line arguments
@@ -150,11 +150,11 @@ public class AdminPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel adminp;
+    private javax.swing.JLabel editcourse;
+    private javax.swing.JLabel edituser;
+    private javax.swing.JLabel logout;
+    private javax.swing.JLabel regfin;
+    private javax.swing.JLabel usersdash;
     // End of variables declaration//GEN-END:variables
 }

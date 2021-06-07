@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
 public class LoginPage extends javax.swing.JFrame {
 
    Connection con;
-    PreparedStatement pst,pst1;
-    ResultSet rs,rs1;
+    PreparedStatement pst,pst1,pst2;
+    ResultSet rs,rs1,rs2;
     public LoginPage() {
         initComponents();
     }
@@ -77,6 +77,16 @@ public class LoginPage extends javax.swing.JFrame {
        String username = user.getText();
         String password = pass.getText();
         
+        
+        
+        if(username.equals("") || password.equals(""))
+        {
+            
+            JOptionPane.showMessageDialog(this,"Username or Password are blank","Error",JOptionPane.ERROR_MESSAGE); 
+        
+        }
+        else
+        {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con =DriverManager.getConnection("jdbc:mysql://localhost/teacheristas","root","");
@@ -104,7 +114,17 @@ public class LoginPage extends javax.swing.JFrame {
                 this.dispose();   
             }
             
+             pst2=con.prepareStatement("select * from student where username=?");
+            pst2.setString(1, user);
             
+            rs2=pst2.executeQuery();
+            
+            if(rs2.next())
+            {
+                StudentPage a = new StudentPage();
+                a.setVisible(true);
+                this.dispose();   
+            }
             
             
            
@@ -118,7 +138,8 @@ public class LoginPage extends javax.swing.JFrame {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        } 
+        }// TODO add your handling code here:
     }//GEN-LAST:event_LoginButtonMouseClicked
 
     /**

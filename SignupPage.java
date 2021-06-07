@@ -142,6 +142,10 @@ public class SignupPage extends javax.swing.JFrame {
         
        
             JOptionPane.showMessageDialog(this,"Account Created successfully!");
+            
+            HomePage a = new HomePage();
+            a.setVisible(true);
+            this.dispose();
              
             
              
