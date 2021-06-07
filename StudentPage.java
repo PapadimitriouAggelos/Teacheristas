@@ -126,7 +126,9 @@ public class StudentPage extends javax.swing.JFrame {
     }//GEN-LAST:event_reviewMouseClicked
 
     private void messagesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_messagesMouseClicked
-       
+        StudentPageMessage a = new  StudentPageMessage();
+       a.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_messagesMouseClicked
 
     private void programmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_programmMouseClicked
