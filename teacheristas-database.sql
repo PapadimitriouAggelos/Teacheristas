@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2021 at 10:38 PM
+-- Generation Time: Jun 07, 2021 at 11:55 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -60,6 +60,24 @@ INSERT INTO `student` (`username`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teacher`
+--
+
+CREATE TABLE `teacher` (
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`username`, `email`) VALUES
+('nikolasath', 'nikolasath@gmail.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -80,7 +98,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`username`, `password`, `name`, `surname`, `address`, `city`, `country`, `postalcode`) VALUES
 ('alexpat', '123456', 'Alex', 'Patelis', 'Zaimi 89', 'Patras', 'Greece', '26228'),
-('apapadimitriou', '1996', 'Aggelos', 'Papadimitriou', 'Ermou 12', 'Patras', 'Greece', '26441');
+('apapadimitriou', '1996', 'Aggelos', 'Papadimitriou', 'Ermou 12', 'Patras', 'Greece', '26441'),
+('nikolasath', '2222', 'Nikolas', 'Athan', 'Ermou 78', 'Patras', 'Greece', '26334');
 
 --
 -- Indexes for dumped tables
@@ -96,6 +115,12 @@ ALTER TABLE `admin`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `teacher`
+--
+ALTER TABLE `teacher`
   ADD PRIMARY KEY (`username`);
 
 --
@@ -119,6 +144,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `student`
   ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
+
+--
+-- Constraints for table `teacher`
+--
+ALTER TABLE `teacher`
+  ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
